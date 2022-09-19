@@ -1,0 +1,76 @@
+package com.apirest.main.controladores;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.apirest.main.dtos.MovimientoDTO;
+import com.apirest.main.servicios.ServicioMovimientos;
+
+
+@Controller
+@RestController
+@RequestMapping(path = "api/movimientos")
+public class ControladorMovimientos implements ControladorObjetoMovimientos<MovimientoDTO> {
+	
+	private ServicioMovimientos servicioMovimientos;
+
+	public ControladorMovimientos(ServicioMovimientos servicioMovimientos) {
+		this.servicioMovimientos = servicioMovimientos;
+	}
+
+	@Override
+	@GetMapping("/{movimiento_Id}")
+	public MovimientoDTO consultar(@PathVariable int movimiento_Id) {
+		
+		return ResponseEntity.status(200).body(servicioMovimientos.consultar(movimiento_Id)).getBody();
+	}
+
+	@Override
+	@PostMapping("/")
+	public ResponseEntity guardar(@RequestBody MovimientoDTO t) {
+
+		MovimientoDTO temp = servicioMovimientos.guardar(t);
+		
+		if(temp.getMovimientoId() != 0)
+		{
+			return ResponseEntity.status(201).body(temp);
+		}else
+		{
+			return ResponseEntity.status(401).body("{'error': 'bad request'}");
+		}
+	}
+
+	@Override
+	@PutMapping("/{movimiento_Id}")
+	public ResponseEntity actualizar(@RequestBody MovimientoDTO t, @PathVariable int movimiento_Id) {
+
+		return ResponseEntity.status(201).body(servicioMovimientos.actualizar(t, movimiento_Id));
+		
+	}
+
+	@Override
+	@DeleteMapping("/{movimiento_Id}")
+	public ResponseEntity eliminar(@PathVariable int movimiento_Id) {
+		
+		boolean movimientos = servicioMovimientos.eliminar(movimiento_Id);
+		
+		if(movimientos)
+		{
+			return ResponseEntity.status(204).body("{'Mensaje':'Registro Borrado'}");
+			
+		}
+		else
+		{
+			return ResponseEntity.status(400).body("{'Mensaje':'Registro no Borrado'}");
+		}
+	}
+
+}

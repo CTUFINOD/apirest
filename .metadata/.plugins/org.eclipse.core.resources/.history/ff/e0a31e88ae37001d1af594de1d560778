@@ -1,0 +1,24 @@
+package com.apirest.main.entidades;
+
+
+@Entity
+@Table(name = "movimientos")
+public class Movimientos {
+
+	@Id
+	@Column(name = "movimientos_id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int movimientoId;
+	
+	@Column(name = "movimientos_fecha")
+	private String fecha;
+	
+	@Column(name = "movimientos_tipoMovimiento")
+	private String tipoMovimiento;
+	
+	@Column(name = "movimientos_valor")
+	private float valor;
+	
+	@Column(name = "movimientos_saldo")
+	private float saldo;
+}

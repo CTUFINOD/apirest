@@ -1,0 +1,28 @@
+package com.apirest.main.entidades;
+
+public class Persona {
+	
+	@Id
+	@Column(name = "persona_id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int personaId;
+	
+	@Column(name = "persona_nombres")
+	private String nombre;
+	
+	@Column(name = "persona_genero")
+	private String genero;
+	
+	@Column(name = "persona_edad")
+	private String edad;
+	
+	@Column(name = "persona_identificacion")
+	private String identificacion;
+	
+	@Column(name = "persona_direccion")
+	private String direccion;
+	
+	@Column(name = "persona_telefono")
+	private String telefono;
+
+}

@@ -1,0 +1,7 @@
+package com.apirest.main.servicios;
+
+import com.apirest.main.dtos.CuentaDTO;
+
+public class ServicioMovimientos implements ServicioObjetoCuenta<MovimientoDTO> {
+
+}

@@ -1,0 +1,5 @@
+package com.apirest.main.servicios;
+
+public interface ServicioObjetoMovimientos {
+
+}

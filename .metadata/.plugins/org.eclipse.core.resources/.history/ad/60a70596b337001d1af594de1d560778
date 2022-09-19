@@ -1,0 +1,6 @@
+package com.apirest.main.repositorios;
+
+@Repository
+public interface RepositorioMovimientos extends JpaRepository<Movimientos, Integer> {
+
+}

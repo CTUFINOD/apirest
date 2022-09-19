@@ -1,0 +1,6 @@
+package com.apirest.main.repositorios;
+
+@Repository
+public interface  RepositorioCuenta extends JpaRepository<Cuenta, Integer> {
+
+}

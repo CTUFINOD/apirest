@@ -1,0 +1,24 @@
+package com.apirest.main.dtos;
+
+public class MovimientoDTO {
+
+	private int movimientoId;
+	private String fecha;
+	private String tipoMovimiento;
+	private float valor;
+	private float saldo;
+	
+	public MovimientoDTO(int movimientoId, String fecha, String tipoMovimiento, float valor, float saldo) {
+		super();
+		this.movimientoId = movimientoId;
+		this.fecha = fecha;
+		this.tipoMovimiento = tipoMovimiento;
+		this.valor = valor;
+		this.saldo = saldo;
+	}
+	
+	public MovimientoDTO() {}
+	
+	
+	
+}

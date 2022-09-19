@@ -1,0 +1,61 @@
+package com.apirest.main.servicios;
+
+import org.springframework.stereotype.Service;
+import com.apirest.main.dtos.ClienteDTO;
+import com.apirest.main.entidades.Cliente;
+import com.apirest.main.repositorios.RepositorioCliente;
+
+import net.bytebuddy.dynamic.DynamicType.Builder.FieldDefinition.Optional;
+
+@Service
+public class ServicioCliente implements ServicioObjetoCliente<ClienteDTO> {
+
+	private RepositorioCliente repositorioCliente;
+	
+	public ServicioCliente(RepositorioCliente repositorioCliente) {
+		this.repositorioCliente = repositorioCliente;
+	}
+
+	@Override
+	public ClienteDTO consultar(int cliente_id) {
+		Optional<Cliente> Optional = repositorioCliente.findById(cliente_id);
+		ClienteDTO aux = new ClienteDTO();
+		
+		try {
+			
+			Cliente cliente = cOptional.get();
+			aux.setClienteId(cliente.getClienteId());
+			aux.setContrasena(cliente.getContrasena());
+			aux.setDireccion(cliente.getDireccion());
+			aux.setEdad(cliente.getEdad());
+			aux.setEstado(cliente.getEstado());
+			aux.setGenero(cliente.getGenero());
+			aux.setIdentificacion(cliente.getIdentificacion());
+			aux.setNombre(cliente.getNombre());
+			aux.setTelefono(cliente.getTelefono());
+			
+		} catch (Exception e) {
+			
+			System.out.println("No existe el id");
+		}
+		return aux;
+	}
+
+	@Override
+	public ClienteDTO guardar(ClienteDTO t) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ClienteDTO actualizar(ClienteDTO t, int cliente_id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean eliminar(int cliente_id) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+}

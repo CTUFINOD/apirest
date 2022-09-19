@@ -1,0 +1,62 @@
+package com.apirest.main.controladores;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.apirest.main.dtos.ClienteDTO;
+import com.apirest.main.servicios.ServicioCliente;
+
+@Controller
+@RestController
+@RequestMapping(path = "api/clientes")
+public class ControladorCliente implements ControladorObjetoCliente<ClienteDTO> {
+
+	private ServicioCliente servicioCliente;
+
+	public ControladorCliente(ServicioCliente servicioCliente) {
+		super();
+		this.servicioCliente = servicioCliente;
+	}
+
+	@Override
+	@GetMapping("/{cliente_id}")
+	public ClienteDTO consultar(@PathVariable int cliente_id) {
+		
+		return ResponseEntity.status(200).body(servicioCliente.consultar(cliente_id)).getBody();
+	}
+
+	@Override
+	@PostMapping("/")
+	public ResponseEntity guardar(@RequestBody ClienteDTO t) {
+
+		ClienteDTO temp = servicioCliente.guardar(t);
+		
+		if(temp.getClienteId() != 0)
+		{
+			return ResponseEntity.status(201).body(temp);
+		}else
+		{
+			return ResponseEntity.status(401).body("{'error': 'bad request'}");
+		}
+	}
+
+	@Override
+	@PutMapping("/{cliente_id}")
+	public ResponseEntity actualizar(ClienteDTO t, int cliente_id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ResponseEntity eliminar(int cliente_id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+}

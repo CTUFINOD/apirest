@@ -1,0 +1,7 @@
+package com.apirest.main.entidades;
+
+@Entity
+@Table(name = "movimientoscreditosdebitos_cliente")
+public class Cliente {
+
+}

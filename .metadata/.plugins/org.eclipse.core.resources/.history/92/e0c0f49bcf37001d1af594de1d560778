@@ -1,0 +1,10 @@
+package com.apirest.main.servicios;
+
+import org.springframework.stereotype.Service;
+
+import com.apirest.main.dtos.ClienteDTO;
+
+@Service
+public class ServicioCuenta implements ServicioObjetoCuenta<CuentaDTO>{
+
+}

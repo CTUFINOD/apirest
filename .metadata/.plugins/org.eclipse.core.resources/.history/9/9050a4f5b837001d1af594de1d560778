@@ -1,0 +1,13 @@
+package com.apirest.main;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class MovimientosCuentaClienteApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(MovimientosCuentaClienteApplication.class, args);
+	}
+
+}

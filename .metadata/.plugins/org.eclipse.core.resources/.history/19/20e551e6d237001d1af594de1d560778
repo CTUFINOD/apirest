@@ -1,0 +1,15 @@
+package com.apirest.main.controladores;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.apirest.main.dtos.ClienteDTO;
+
+@Controller
+@RestController
+@RequestMapping(path = "api/clientes")
+public class ControladorCuenta implements ControladorObjetoCuenta<CuentaDTO> {
+
+	
+}

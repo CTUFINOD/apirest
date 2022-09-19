@@ -1,0 +1,6 @@
+package com.apirest.main.controladores;
+
+
+public interface ControladorObjetoCliente {
+
+}

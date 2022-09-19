@@ -1,0 +1,17 @@
+package com.apirest.main.entidades;
+
+@Entity
+@Table(name = "movimientoscreditosdebitos_cliente")
+public class Cliente {
+
+	@Id
+	@Column(name = "cliente_id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int clienteId;
+	
+	@Column(name = "cliente_contrasena")
+	private String contrasena;
+	
+	@Column(name = "cliente_estado")
+	private String estado;
+}

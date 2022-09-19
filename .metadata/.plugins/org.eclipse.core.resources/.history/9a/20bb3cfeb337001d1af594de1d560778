@@ -1,0 +1,40 @@
+package com.apirest.main.controladores;
+
+
+@Controller
+@RestController
+@RequestMapping(path = "api/clientes")
+public class ControladorCliente implements ControladorObjetoCliente<ClienteDTO> {
+
+	private ServicioCliente servicioCliente;
+
+	public ControladorCliente(ServicioCliente servicioCliente) {
+		super();
+		this.servicioCliente = servicioCliente;
+	}
+
+	@Override
+	@GetMapping("/{cliente_id}")
+	public ClienteDTO consultar(@PathVariable int cliente_id) {
+		
+		return ResponseEntity.status(200).body(servicioCliente.consultar(cliente_id)).getBody();
+	}
+
+	@Override
+	public ResponseEntity guardar(ClienteDTO t) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ResponseEntity actualizar(ClienteDTO t, int cliente_id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ResponseEntity eliminar(int cliente_id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+}

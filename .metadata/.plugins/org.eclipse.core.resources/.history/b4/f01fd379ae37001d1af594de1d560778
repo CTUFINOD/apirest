@@ -1,0 +1,8 @@
+package com.apirest.main.entidades;
+
+
+@Entity
+@Table(name = "movimientos")
+public class Movimientos {
+
+}

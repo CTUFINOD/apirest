@@ -1,0 +1,101 @@
+package com.apirest.main.servicios;
+
+import java.util.Optional;
+
+import com.apirest.main.dtos.MovimientoDTO;
+import com.apirest.main.entidades.Movimientos;
+import com.apirest.main.repositorios.RepositorioMovimientos;
+
+public class ServicioMovimientos implements ServicioObjetoMovimientos<MovimientoDTO> {
+	private RepositorioMovimientos repositorioMovimientos;
+
+	public ServicioMovimientos(RepositorioMovimientos repositorioMovimientos) {
+		this.repositorioMovimientos = repositorioMovimientos;
+	}
+
+	@Override
+	public MovimientoDTO consultar(int movimiento_Id) {
+		Optional<Movimientos> cOptional = repositorioMovimientos.findById(movimiento_Id);
+		MovimientoDTO aux = new MovimientoDTO();
+
+		try {
+
+			Movimientos movimientos = cOptional.get();
+			aux.setMovimientoId(movimientos.getMovimientoId());
+			aux.setFecha(movimientos.getFecha());
+			aux.setTipoMovimiento(movimientos.getTipoMovimiento());
+			aux.setSaldo(movimientos.getSaldo());
+			aux.setValor(movimientos.getValor());
+
+		} catch (Exception e) {
+
+			System.out.println("No existe el id");
+		}
+		return aux;
+	}
+
+	@Override
+	public MovimientoDTO guardar(MovimientoDTO t) {
+
+		Movimientos movimientos = new Movimientos();
+		
+		movimientos.setMovimientoId(t.getMovimientoId());
+		movimientos.setFecha(t.getFecha());
+		movimientos.setTipoMovimiento(t.getTipoMovimiento());
+		movimientos.setSaldo(t.getSaldo());
+		movimientos.setValor(t.getValor());
+		
+		cuenta.setCuentaId(t.getCuentaId());
+		cuenta.setNumeroCuenta(t.getNumeroCuenta());
+		cuenta.setTipoCuenta(t.getTipoCuenta());
+		cuenta.setSaldoInicial(t.getSaldoInicial());
+		cuenta.setEstado(t.getEstado());
+		cuenta.setCliente(t.getCliente());
+
+		repositorioCuenta.save(cuenta);
+		t.setCuentaId(cuenta.getCuentaId());
+
+		return t;
+	}
+
+	@Override
+	public CuentaDTO actualizar(CuentaDTO t, int cuenta_Id) {
+		Optional<Cuenta> aOptional = repositorioCuenta.findById(cuenta_Id);
+		Cuenta cuenta = new Cuenta();
+
+		try {
+
+			cuenta = aOptional.get();
+			
+			cuenta.setNumeroCuenta(t.getNumeroCuenta());
+			cuenta.setTipoCuenta(t.getTipoCuenta());
+			cuenta.setSaldoInicial(t.getSaldoInicial());
+			cuenta.setEstado(t.getEstado());
+			cuenta.setCliente(t.getCliente());
+			
+			repositorioCuenta.save(cuenta);
+			t.setCuentaId(cuenta.getCuentaId());
+			
+		} catch (Exception e) {
+
+			System.out.println("No existe");
+		}
+		
+		return t;
+	}
+
+	@Override
+	public boolean eliminar(int cuenta_Id) {
+		try {
+			
+				repositorioCuenta.deleteById(cuenta_Id);
+			
+		} catch (Exception e) {
+			
+			return false;
+		}
+		
+		return true;
+	}
+
+}
